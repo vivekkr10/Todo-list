@@ -83,9 +83,14 @@ document.addEventListener("DOMContentLoaded", () => {
       taskSmall.classList.add("task-date");
       let timeText = "";
       if (task.startTime && task.endTime) {
-        timeText = ` | ${task.startTime} - ${task.endTime}`;
+        timeText = `${task.startTime} - ${task.endTime}`;
       }
-      taskSmall.textContent = `${task.date}${timeText}`;
+      
+      if (task.isDaily || !task.date) {
+        taskSmall.textContent = timeText;
+      } else {
+        taskSmall.textContent = timeText ? `${task.date} | ${timeText}` : task.date;
+      }
 
       taskDiv.append(headerDiv, taskP, taskSmall);
 
@@ -139,6 +144,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const taskDateInput = document.getElementById("task-date");
   const taskStartTimeInput = document.getElementById("task-start-time");
   const taskEndTimeInput = document.getElementById("task-end-time");
+  const taskDailyInput = document.getElementById("task-daily");
+
+  if (taskDailyInput && taskDateInput) {
+    taskDailyInput.addEventListener("change", (e) => {
+      if (e.target.checked) {
+        taskDateInput.disabled = true;
+        taskDateInput.required = false;
+        taskDateInput.value = "";
+        taskDateInput.style.opacity = "0.5";
+        taskDateInput.style.cursor = "not-allowed";
+      } else {
+        taskDateInput.disabled = false;
+        taskDateInput.required = true;
+        taskDateInput.style.opacity = "1";
+        taskDateInput.style.cursor = "text";
+      }
+    });
+  }
 
   if (typeof flatpickr !== 'undefined') {
     if (taskDateInput) {
