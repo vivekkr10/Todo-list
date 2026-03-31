@@ -15,7 +15,7 @@ class TaskSidebar extends HTMLElement {
         <div class="sidebar-btns">
           <a href="/assets/pages/dashboard.html"><i data-lucide="layout-dashboard"></i> Dashboard</a>
           <a href="/assets/pages/allTasks.html"><i data-lucide="calendar"></i> All Tasks</a>
-          <a href="#"><i data-lucide="map"></i> Strategic Map</a>
+          <a href="/assets/pages/dailyTasks.html"><i data-lucide="sun"></i> Daily Tasks</a>
           <a href="#"><i data-lucide="bar-chart"></i> Performance</a>
           <a href="#"><i data-lucide="settings"></i> Governance</a>
         </div>

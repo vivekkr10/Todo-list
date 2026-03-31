@@ -59,12 +59,34 @@ if (newTaskBtn && closeModalBtn) {
 }
 
 const taskDateInput = document.getElementById("task-date");
-if (taskDateInput && typeof flatpickr !== 'undefined') {
-  // Let flatpickr handle the input customization fully
-  flatpickr(taskDateInput, {
-    dateFormat: "Y-m-d",
-    disableMobile: "true"
-  });
+const taskStartTimeInput = document.getElementById("task-start-time");
+const taskEndTimeInput = document.getElementById("task-end-time");
+
+if (typeof flatpickr !== 'undefined') {
+  if (taskDateInput) {
+    flatpickr(taskDateInput, {
+      dateFormat: "Y-m-d",
+      disableMobile: "true"
+    });
+  }
+  if (taskStartTimeInput) {
+    flatpickr(taskStartTimeInput, {
+      enableTime: true,
+      noCalendar: true,
+      dateFormat: "H:i",
+      time_24hr: true,
+      disableMobile: "true"
+    });
+  }
+  if (taskEndTimeInput) {
+    flatpickr(taskEndTimeInput, {
+      enableTime: true,
+      noCalendar: true,
+      dateFormat: "H:i",
+      time_24hr: true,
+      disableMobile: "true"
+    });
+  }
 }
 
 taskForm.addEventListener("submit", function (e) {
@@ -74,6 +96,9 @@ taskForm.addEventListener("submit", function (e) {
   const taskDesc = document.getElementById("task-desc").value;
   const taskPriority = document.getElementById("task-priority").value;
   const taskDate = document.getElementById("task-date").value;
+  const taskStartTime = document.getElementById("task-start-time").value;
+  const taskEndTime = document.getElementById("task-end-time").value;
+  const taskDaily = document.getElementById("task-daily").checked;
 
   const newTask = {
     id: Date.now(),
@@ -81,6 +106,9 @@ taskForm.addEventListener("submit", function (e) {
     desc: taskDesc,
     priority: taskPriority,
     date: taskDate,
+    startTime: taskStartTime,
+    endTime: taskEndTime,
+    isDaily: taskDaily,
     completed: false,
   };
 
@@ -173,7 +201,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const taskSmall = document.createElement("small");
       taskSmall.classList.add("task-date");
-      taskSmall.textContent = task.date;
+      let timeText = "";
+      if (task.startTime && task.endTime) {
+        timeText = ` | ${task.startTime} - ${task.endTime}`;
+      }
+      taskSmall.textContent = `${task.date}${timeText}`;
 
       taskDiv.append(headerDiv, taskP, taskSmall);
 

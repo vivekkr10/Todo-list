@@ -7,10 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     taskContainer.innerHTML = "";
 
-    let filteredTasks = getTasks;
+    let filteredTasks = getTasks.filter(task => task.isDaily);
 
     if (filter !== "all") {
-      filteredTasks = getTasks.filter((task) => task.priority === filter);
+      filteredTasks = filteredTasks.filter((task) => task.priority === filter);
     }
 
     filteredTasks.forEach((task) => {
@@ -153,7 +153,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (newTaskBtn && closeModalBtn && taskForm) {
-    newTaskBtn.addEventListener("click", () => taskForm.classList.add("show-modal"));
+    newTaskBtn.addEventListener("click", () => {
+      taskForm.classList.add("show-modal");
+      const taskDailyInput = document.getElementById("task-daily");
+      if (taskDailyInput) taskDailyInput.checked = true;
+    });
     closeModalBtn.addEventListener("click", () => taskForm.classList.remove("show-modal"));
   }
 

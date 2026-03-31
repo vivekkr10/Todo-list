@@ -102,6 +102,22 @@
             <option value="critical">Critical</option>
           </select>
 
+          <div style="display: flex; gap: 15px;">
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
+              <label for="task-start-time" style="font-size: 13px; color: var(--text-secondary); margin-left: 5px;">Start Time (24h)</label>
+              <input type="text" id="task-start-time" required placeholder="Select Time" />
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
+              <label for="task-end-time" style="font-size: 13px; color: var(--text-secondary); margin-left: 5px;">End Time (24h)</label>
+              <input type="text" id="task-end-time" required placeholder="Select Time" />
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 10px; padding: 0 5px;">
+            <input type="checkbox" id="task-daily" style="width: auto; height: 18px; width: 18px; accent-color: var(--accent-primary); cursor: pointer;" />
+            <label for="task-daily" style="color: var(--text-primary); cursor: pointer; user-select: none; font-size: 14px;">Daily Task</label>
+          </div>
+
           <input type="date" id="task-date" required />
 
           <button id="save-task">Save Task</button>
