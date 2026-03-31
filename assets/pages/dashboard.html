@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Maker</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <!-- Lucide (needed for icons) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+  </head>
+
+  <body>
+    <!-- 🔥 Call Sidebar Here (top of body) -->
+    <task-sidebar></task-sidebar>
+
+    <!-- Page Content -->
+    <div id="name-section" class="name-section" style="padding: 20px">
+      <h1>Hello, <span id="username"></span>!</h1>
+      <div id="new-task-button">
+        <button>+ New Task</button>
+      </div>
+    </div>
+    <div class="dashboard-cards">
+      <div class="card">
+        <div class="text-num">
+          <h3>Total Tasks</h3>
+          <h1 id="total-tasks">24</h1>
+        </div>
+        <span class="material-symbols-outlined">assignment</span>
+      </div>
+      <div class="card">
+        <div class="text-num">
+          <h3>Competed</h3>
+          <h1 id="completed-tasks">18</h1>
+        </div>
+        <span class="material-symbols-outlined">check_circle</span>
+      </div>
+      <div class="card">
+        <div class="text-num">
+          <h3>Pending</h3>
+          <h1 id="pending-tasks">5</h1>
+        </div>
+        <span class="material-symbols-outlined">hourglass_empty</span>
+      </div>
+      <div class="card">
+        <div class="text-num">
+          <h3>Overdue</h3>
+          <h1 id="overdue-tasks">1</h1>
+        </div>
+        <span class="material-symbols-outlined">warning</span>
+      </div>
+    </div>
+
+    <!-- ---------------------------- Get All Tasks ---------------------------- -->
+    <div class="get-all-tasks">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <h1 style="margin-bottom: 0;">Your Tasks</h1>
+        <a href="allTasks.html" class="all-tasks-link" style="text-decoration: none; color: var(--text-primary); font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px; padding: 10px 18px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-glass); border-radius: 20px; transition: var(--transition); backdrop-filter: blur(10px);">
+          All Tasks <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+        </a>
+      </div>
+      <div id="task-container"></div>
+    </div>
+
+    <!-- ---------------------------- Popup ---------------------------- -->
+
+    <!-- New Task Modal -->
+    <form id="task-form" class="modal-body">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Create New Task</h2>
+          <span id="close-modal">&times;</span>
+        </div>
+
+        <div class="modal-body">
+          <input
+            type="text"
+            id="task-title"
+            placeholder="Task title"
+            required
+          />
+
+          <textarea
+            id="task-desc"
+            placeholder="Task description"
+            required
+          ></textarea>
+
+          <select id="task-priority" required>
+            <option value="low">Select Priority</option>
+            <option value="low">Low Priority</option>
+            <option value="medium">Medium Priority</option>
+            <option value="high">High Priority</option>
+            <option value="critical">Critical</option>
+          </select>
+
+          <input type="date" id="task-date" required />
+
+          <button id="save-task">Save Task</button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Sidebar Component JS -->
+    <script src="../javascript/sidebar.js"></script>
+
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <!-- Dashboard Page JS -->
+    <script src="../javascript/dashboard.js"></script>
+  </body>
+</html>
