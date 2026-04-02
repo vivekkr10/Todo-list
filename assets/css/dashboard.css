@@ -186,10 +186,6 @@
 }
 
 /* Active (tap) effects for dashboard */
-.dashboard-cards .card:active {
-  transform: scale(0.97);
-  background: rgba(255, 255, 255, 0.05);
-}
 .all-tasks-link:active {
   transform: scale(0.95);
 }

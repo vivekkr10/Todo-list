@@ -583,10 +583,6 @@ span.flatpickr-weekday {
   background: rgba(255,255,255,0.12);
   color: #fff;
 }
-.task-card:active {
-  transform: scale(0.98);
-  background: rgba(255,255,255,0.05);
-}
 .menu-btn:active {
   background: rgba(255,255,255,0.15);
   transform: scale(0.9);
