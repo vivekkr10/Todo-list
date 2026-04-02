@@ -240,7 +240,8 @@ select {
 }
 
 /* Modal and Form globally */
-form#task-form.modal-body {
+form#task-form.modal-body,
+form#edit-task-form.modal-body {
   position: fixed;
   inset: 0;
   display: flex !important;
@@ -257,7 +258,8 @@ form#task-form.modal-body {
   padding: 0;
   max-width: none;
 }
-form#task-form.modal-body.show-modal {
+form#task-form.modal-body.show-modal,
+form#edit-task-form.modal-body.show-modal {
   opacity: 1;
   pointer-events: auto;
 }
@@ -282,13 +284,16 @@ form#task-form.modal-body.show-modal {
   display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;
 }
 .modal-header h2 { font-size: 24px; font-weight: 700; }
-.modal-header #close-modal { font-size: 28px; color: var(--text-secondary); cursor: pointer; transition: 0.3s; }
-.modal-header #close-modal:hover { color: var(--accent-secondary); transform: rotate(90deg); }
+.modal-header #close-modal,
+.modal-header #close-edit-modal { font-size: 28px; color: var(--text-secondary); cursor: pointer; transition: 0.3s; }
+.modal-header #close-modal:hover,
+.modal-header #close-edit-modal:hover { color: var(--accent-secondary); transform: rotate(90deg); }
 
 .modal-content .modal-body {
   display: flex; flex-direction: column; gap: 16px;
 }
-#save-task {
+#save-task,
+#update-task {
   margin-top: 10px;
   padding: 16px;
   font-family: inherit;
@@ -304,13 +309,16 @@ form#task-form.modal-body.show-modal {
   cursor: pointer;
   transition: var(--transition);
 }
-#save-task::before {
+#save-task::before,
+#update-task::before {
   content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
   transform: skewX(-20deg); transition: 0.6s;
 }
-#save-task:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(99, 102, 241, 0.4); }
-#save-task:hover::before { left: 150%; }
+#save-task:hover,
+#update-task:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(99, 102, 241, 0.4); }
+#save-task:hover::before,
+#update-task:hover::before { left: 150%; }
 
 /* All Tasks Page Styles */
 .get-all-tasks {
