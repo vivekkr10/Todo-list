@@ -76,6 +76,47 @@
       </div>
     </form>
 
+    <!-- Edit Task Modal -->
+    <form id="edit-task-form" class="modal-body">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Edit Task</h2>
+          <span id="close-edit-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="edit-task-id" />
+          <input type="text" id="edit-task-title" placeholder="Task title" required />
+          <textarea id="edit-task-desc" placeholder="Task description" required></textarea>
+          <select id="edit-task-priority" required>
+            <option value="" disabled selected>Select Priority</option>
+            <option value="low">Low Priority</option>
+            <option value="medium">Medium Priority</option>
+            <option value="high">High Priority</option>
+            <option value="critical">Critical</option>
+          </select>
+
+          <div style="display: flex; gap: 15px;">
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
+              <label for="edit-task-start-time" style="font-size: 13px; color: var(--text-secondary); margin-left: 5px;">Start Time (24h)</label>
+              <input type="text" id="edit-task-start-time" required placeholder="Select Time" />
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
+              <label for="edit-task-end-time" style="font-size: 13px; color: var(--text-secondary); margin-left: 5px;">End Time (24h)</label>
+              <input type="text" id="edit-task-end-time" required placeholder="Select Time" />
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 10px; padding: 0 5px;">
+            <input type="checkbox" id="edit-task-daily" style="width: auto; height: 18px; width: 18px; accent-color: var(--accent-primary); cursor: pointer;" />
+            <label for="edit-task-daily" style="color: var(--text-primary); cursor: pointer; user-select: none; font-size: 14px;">Daily Task</label>
+          </div>
+
+          <input type="date" id="edit-task-date" required />
+          <button id="update-task">Update Task</button>
+        </div>
+      </div>
+    </form>
+
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="../javascript/sidebar.js"></script>
     <script src="../javascript/allTasks.js"></script>

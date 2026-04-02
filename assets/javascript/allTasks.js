@@ -61,7 +61,15 @@ document.addEventListener("DOMContentLoaded", () => {
         location.reload();
       });
 
-      dropdown.append(toggleStatusBtn, deleteBtn);
+      const editBtn = document.createElement("button");
+      editBtn.textContent = "Edit Task";
+      editBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        dropdown.classList.remove("show");
+        openEditModal(task);
+      });
+
+      dropdown.append(toggleStatusBtn, editBtn, deleteBtn);
       menuContainer.append(menuBtn, dropdown);
 
       menuBtn.addEventListener("click", (e) => {
@@ -211,6 +219,101 @@ document.addEventListener("DOMContentLoaded", () => {
       taskForm.reset();
       taskForm.classList.remove("show-modal");
       loadTasks(); // Dynamically reload tasks without full page refresh!
+    });
+  }
+
+  // ── Edit Task Modal Logic ──
+  const editForm = document.getElementById("edit-task-form");
+  const closeEditModalBtn = document.getElementById("close-edit-modal");
+  const editDateInput = document.getElementById("edit-task-date");
+  const editStartTimeInput = document.getElementById("edit-task-start-time");
+  const editEndTimeInput = document.getElementById("edit-task-end-time");
+  const editDailyInput = document.getElementById("edit-task-daily");
+
+  if (editDailyInput && editDateInput) {
+    editDailyInput.addEventListener("change", (e) => {
+      if (e.target.checked) {
+        editDateInput.disabled = true;
+        editDateInput.required = false;
+        editDateInput.value = "";
+        editDateInput.style.opacity = "0.5";
+        editDateInput.style.cursor = "not-allowed";
+      } else {
+        editDateInput.disabled = false;
+        editDateInput.required = true;
+        editDateInput.style.opacity = "1";
+        editDateInput.style.cursor = "text";
+      }
+    });
+  }
+
+  let editDatePicker, editStartPicker, editEndPicker;
+  if (typeof flatpickr !== 'undefined') {
+    if (editDateInput) editDatePicker = flatpickr(editDateInput, { dateFormat: "Y-m-d", disableMobile: "true" });
+    if (editStartTimeInput) editStartPicker = flatpickr(editStartTimeInput, { enableTime: true, noCalendar: true, dateFormat: "H:i", time_24hr: true, disableMobile: "true" });
+    if (editEndTimeInput) editEndPicker = flatpickr(editEndTimeInput, { enableTime: true, noCalendar: true, dateFormat: "H:i", time_24hr: true, disableMobile: "true" });
+  }
+
+  if (closeEditModalBtn && editForm) {
+    closeEditModalBtn.addEventListener("click", () => editForm.classList.remove("show-modal"));
+  }
+
+  function openEditModal(task) {
+    document.getElementById("edit-task-id").value = task.id;
+    document.getElementById("edit-task-title").value = task.title;
+    document.getElementById("edit-task-desc").value = task.desc;
+    document.getElementById("edit-task-priority").value = task.priority;
+
+    if (editStartPicker) editStartPicker.setDate(task.startTime || "", true);
+    else if (editStartTimeInput) editStartTimeInput.value = task.startTime || "";
+
+    if (editEndPicker) editEndPicker.setDate(task.endTime || "", true);
+    else if (editEndTimeInput) editEndTimeInput.value = task.endTime || "";
+
+    if (editDailyInput) editDailyInput.checked = !!task.isDaily;
+
+    if (task.isDaily) {
+      editDateInput.disabled = true;
+      editDateInput.required = false;
+      editDateInput.value = "";
+      editDateInput.style.opacity = "0.5";
+      editDateInput.style.cursor = "not-allowed";
+    } else {
+      editDateInput.disabled = false;
+      editDateInput.required = true;
+      editDateInput.style.opacity = "1";
+      editDateInput.style.cursor = "text";
+      if (editDatePicker) editDatePicker.setDate(task.date || "", true);
+      else editDateInput.value = task.date || "";
+    }
+
+    editForm.classList.add("show-modal");
+  }
+
+  if (editForm) {
+    editForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const taskId = Number(document.getElementById("edit-task-id").value);
+      const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+      const updated = tasks.map((t) => {
+        if (t.id === taskId) {
+          return {
+            ...t,
+            title: document.getElementById("edit-task-title").value,
+            desc: document.getElementById("edit-task-desc").value,
+            priority: document.getElementById("edit-task-priority").value,
+            date: document.getElementById("edit-task-date").value,
+            startTime: document.getElementById("edit-task-start-time").value,
+            endTime: document.getElementById("edit-task-end-time").value,
+            isDaily: document.getElementById("edit-task-daily").checked,
+          };
+        }
+        return t;
+      });
+      localStorage.setItem("tasks", JSON.stringify(updated));
+      alert("Task updated ✅");
+      editForm.classList.remove("show-modal");
+      loadTasks();
     });
   }
 });
