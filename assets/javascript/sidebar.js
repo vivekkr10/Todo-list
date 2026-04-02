@@ -1,3 +1,31 @@
+// ── Auto-reset daily tasks at midnight ──
+// Runs on every page load (sidebar is on all pages).
+// Compares today's date with the last reset date in localStorage.
+// Only tasks with isDaily === true get marked incomplete.
+(function resetDailyTasks() {
+  const today = new Date().toISOString().slice(0, 10); // "YYYY-MM-DD"
+  const lastReset = localStorage.getItem("lastDailyReset");
+
+  if (lastReset !== today) {
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    let changed = false;
+
+    const updated = tasks.map((task) => {
+      if (task.isDaily && task.completed) {
+        changed = true;
+        return { ...task, completed: false };
+      }
+      return task;
+    });
+
+    if (changed) {
+      localStorage.setItem("tasks", JSON.stringify(updated));
+    }
+
+    localStorage.setItem("lastDailyReset", today);
+  }
+})();
+
 class TaskSidebar extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
