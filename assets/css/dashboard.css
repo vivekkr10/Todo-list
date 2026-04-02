@@ -59,11 +59,10 @@
 /* Dashboard Cards */
 .dashboard-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
   padding: 0 20px;
-  max-width: 2000px;
-  margin: 0 auto;
+  max-width: 700px;
 }
 
 .dashboard-cards .card {
@@ -71,15 +70,15 @@
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--border-glass);
-  padding: 30px;
-  border-radius: 24px;
+  padding: 18px 20px;
+  border-radius: 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   transition: var(--transition);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 }
 
 .dashboard-cards .card::before {
@@ -99,22 +98,22 @@
 }
 
 .text-num h3 {
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--text-secondary);
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 .text-num h1 {
-  font-size: 42px;
+  font-size: 30px;
   font-weight: 800;
   color: var(--text-primary);
   line-height: 1;
 }
 
 .dashboard-cards .card > span.material-symbols-outlined {
-  font-size: 48px;
-  padding: 16px;
-  border-radius: 20px;
+  font-size: 34px;
+  padding: 12px;
+  border-radius: 14px;
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.05);
   transition: var(--transition);
@@ -154,7 +153,7 @@
 
 @media (max-width: 768px) {
   .dashboard-cards {
-    grid-template-columns: 1fr;
+    gap: 12px;
   }
 }
 
@@ -162,11 +161,11 @@
 @media (max-width: 480px) {
   .name-section { padding: 10px 15px 20px 15px !important; flex-direction: column; align-items: flex-start; gap: 15px; }
   .name-section #new-task-button button { padding: 12px 20px; font-size: 14px; }
-  .dashboard-cards { padding: 0 15px; gap: 16px; }
-  .dashboard-cards .card { padding: 15px; flex-direction: column; text-align: center; gap: 10px; border-radius: 16px;}
-  .dashboard-cards .card > span.material-symbols-outlined { padding: 10px; font-size: 28px; border-radius: 12px;}
-  .text-num h1 { font-size: 28px; }
-  .text-num h3 { font-size: 14px; margin-bottom: 4px; }
+  .dashboard-cards { padding: 0 15px; gap: 10px; }
+  .dashboard-cards .card { padding: 14px 16px; border-radius: 14px; }
+  .dashboard-cards .card > span.material-symbols-outlined { padding: 8px; font-size: 24px; border-radius: 10px; }
+  .text-num h1 { font-size: 24px; }
+  .text-num h3 { font-size: 12px; margin-bottom: 2px; }
 }
 
 .all-tasks-link span {
