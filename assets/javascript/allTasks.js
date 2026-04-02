@@ -128,6 +128,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
       taskContainer.appendChild(taskDiv);
     });
+
+    if (filteredTasks.length === 0) {
+      const addCard = document.createElement("div");
+      addCard.classList.add("task-card", "add-task-card");
+      addCard.innerHTML = `<span class="add-task-icon">+</span><p>Add New Task</p>`;
+      addCard.addEventListener("click", () => {
+        const taskForm = document.getElementById("task-form");
+        if (taskForm) taskForm.classList.add("show-modal");
+      });
+      taskContainer.appendChild(addCard);
+    }
   }
 
   document.addEventListener("click", () => {
