@@ -46,12 +46,14 @@
   transform: skewX(-20deg);
   transition: 0.6s;
 }
-.name-section #new-task-button button:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 15px 35px rgba(99, 102, 241, 0.5);
-}
-.name-section #new-task-button button:hover::before {
-  left: 150%;
+@media (hover: hover) {
+  .name-section #new-task-button button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(99, 102, 241, 0.5);
+  }
+  .name-section #new-task-button button:hover::before {
+    left: 150%;
+  }
 }
 
 /* Dashboard Cards */
@@ -87,11 +89,13 @@
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
 }
 
-.dashboard-cards .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-  border-color: rgba(255,255,255,0.15);
-  background: rgba(255, 255, 255, 0.05);
+@media (hover: hover) {
+  .dashboard-cards .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    border-color: rgba(255,255,255,0.15);
+    background: rgba(255, 255, 255, 0.05);
+  }
 }
 
 .text-num h3 {
@@ -142,8 +146,10 @@
   box-shadow: 0 0 20px rgba(248, 113, 113, 0.1);
 }
 
-.dashboard-cards .card:hover span {
-  transform: scale(1.1) rotate(10deg);
+@media (hover: hover) {
+  .dashboard-cards .card:hover span {
+    transform: scale(1.1) rotate(10deg);
+  }
 }
 
 @media (max-width: 768px) {
@@ -163,16 +169,27 @@
   .text-num h3 { font-size: 14px; margin-bottom: 4px; }
 }
 
-.all-tasks-link:hover {
-  background: rgba(255, 255, 255, 0.1) !important;
-  color: #fff !important;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-  border-color: rgba(255,255,255,0.2) !important;
-}
 .all-tasks-link span {
   transition: transform 0.3s ease, color 0.3s ease;
 }
-.all-tasks-link:hover span {
-  transform: translateX(4px);
-  color: var(--accent-primary);
+@media (hover: hover) {
+  .all-tasks-link:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border-color: rgba(255,255,255,0.2) !important;
+  }
+  .all-tasks-link:hover span {
+    transform: translateX(4px);
+    color: var(--accent-primary);
+  }
+}
+
+/* Active (tap) effects for dashboard */
+.dashboard-cards .card:active {
+  transform: scale(0.97);
+  background: rgba(255, 255, 255, 0.05);
+}
+.all-tasks-link:active {
+  transform: scale(0.95);
 }
