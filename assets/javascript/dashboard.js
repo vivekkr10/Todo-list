@@ -240,11 +240,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
       taskDiv.append(headerDiv, taskP, taskSmall);
 
+      const completeBtn = document.createElement("button");
+      completeBtn.textContent = "Mark Complete";
+      completeBtn.classList.add("complete-btn");
+      completeBtn.addEventListener("click", () => {
+        const tasks = JSON.parse(localStorage.getItem("tasks"));
+        const updateTasks = tasks.map((t) => {
+          if (t.id === task.id) {
+            return { ...t, completed: true };
+          }
+          return t;
+        });
+        localStorage.setItem("tasks", JSON.stringify(updateTasks));
+        location.reload();
+      });
+
       if (task.completed) {
         const completedText = document.createElement("span");
         completedText.textContent = "✅ Completed";
         completedText.classList.add("completed");
         taskDiv.appendChild(completedText);
+      } else {
+        taskDiv.appendChild(completeBtn);
       }
 
       taskContainer.appendChild(taskDiv);
