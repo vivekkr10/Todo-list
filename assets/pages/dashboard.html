@@ -12,9 +12,15 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="apple-touch-icon" href="/assets/icons/icon-192.png" />
+    <meta name="theme-color" content="#1a1a2e" />
+    <link rel="manifest" href="/manifest.json" />
   </head>
 
   <body>
@@ -61,10 +67,38 @@
 
     <!-- ---------------------------- Get All Tasks ---------------------------- -->
     <div class="get-all-tasks">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-        <h1 style="margin-bottom: 0;">Your Tasks</h1>
-        <a href="allTasks.html" class="all-tasks-link" style="text-decoration: none; color: var(--text-primary); font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px; padding: 10px 18px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-glass); border-radius: 20px; transition: var(--transition); backdrop-filter: blur(10px);">
-          All Tasks <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 24px;
+        "
+      >
+        <h1 style="margin-bottom: 0">Your Tasks</h1>
+        <a
+          href="allTasks.html"
+          class="all-tasks-link"
+          style="
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+          "
+        >
+          All Tasks
+          <span class="material-symbols-outlined" style="font-size: 18px"
+            >arrow_forward</span
+          >
         </a>
       </div>
       <div id="task-container"></div>
@@ -102,20 +136,76 @@
             <option value="critical">Critical</option>
           </select>
 
-          <div style="display: flex; gap: 15px;">
-            <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
-              <label for="task-start-time" style="font-size: 13px; color: var(--text-secondary); margin-left: 5px;">Start Time (24h)</label>
-              <input type="text" id="task-start-time" required placeholder="Select Time" />
+          <div style="display: flex; gap: 15px">
+            <div
+              style="flex: 1; display: flex; flex-direction: column; gap: 6px"
+            >
+              <label
+                for="task-start-time"
+                style="
+                  font-size: 13px;
+                  color: var(--text-secondary);
+                  margin-left: 5px;
+                "
+                >Start Time (24h)</label
+              >
+              <input
+                type="text"
+                id="task-start-time"
+                required
+                placeholder="Select Time"
+              />
             </div>
-            <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
-              <label for="task-end-time" style="font-size: 13px; color: var(--text-secondary); margin-left: 5px;">End Time (24h)</label>
-              <input type="text" id="task-end-time" required placeholder="Select Time" />
+            <div
+              style="flex: 1; display: flex; flex-direction: column; gap: 6px"
+            >
+              <label
+                for="task-end-time"
+                style="
+                  font-size: 13px;
+                  color: var(--text-secondary);
+                  margin-left: 5px;
+                "
+                >End Time (24h)</label
+              >
+              <input
+                type="text"
+                id="task-end-time"
+                required
+                placeholder="Select Time"
+              />
             </div>
           </div>
 
-          <div style="display: flex; align-items: center; gap: 10px; padding: 0 5px;">
-            <input type="checkbox" id="task-daily" style="width: auto; height: 18px; width: 18px; accent-color: var(--accent-primary); cursor: pointer;" />
-            <label for="task-daily" style="color: var(--text-primary); cursor: pointer; user-select: none; font-size: 14px;">Daily Task</label>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 10px;
+              padding: 0 5px;
+            "
+          >
+            <input
+              type="checkbox"
+              id="task-daily"
+              style="
+                width: auto;
+                height: 18px;
+                width: 18px;
+                accent-color: var(--accent-primary);
+                cursor: pointer;
+              "
+            />
+            <label
+              for="task-daily"
+              style="
+                color: var(--text-primary);
+                cursor: pointer;
+                user-select: none;
+                font-size: 14px;
+              "
+              >Daily Task</label
+            >
           </div>
 
           <input type="date" id="task-date" required />
@@ -134,8 +224,17 @@
         </div>
         <div class="modal-body">
           <input type="hidden" id="edit-task-id" />
-          <input type="text" id="edit-task-title" placeholder="Task title" required />
-          <textarea id="edit-task-desc" placeholder="Task description" required></textarea>
+          <input
+            type="text"
+            id="edit-task-title"
+            placeholder="Task title"
+            required
+          />
+          <textarea
+            id="edit-task-desc"
+            placeholder="Task description"
+            required
+          ></textarea>
           <select id="edit-task-priority" required>
             <option value="" disabled selected>Select Priority</option>
             <option value="low">Low Priority</option>
@@ -144,20 +243,76 @@
             <option value="critical">Critical</option>
           </select>
 
-          <div style="display: flex; gap: 15px;">
-            <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
-              <label for="edit-task-start-time" style="font-size: 13px; color: var(--text-secondary); margin-left: 5px;">Start Time (24h)</label>
-              <input type="text" id="edit-task-start-time" required placeholder="Select Time" />
+          <div style="display: flex; gap: 15px">
+            <div
+              style="flex: 1; display: flex; flex-direction: column; gap: 6px"
+            >
+              <label
+                for="edit-task-start-time"
+                style="
+                  font-size: 13px;
+                  color: var(--text-secondary);
+                  margin-left: 5px;
+                "
+                >Start Time (24h)</label
+              >
+              <input
+                type="text"
+                id="edit-task-start-time"
+                required
+                placeholder="Select Time"
+              />
             </div>
-            <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
-              <label for="edit-task-end-time" style="font-size: 13px; color: var(--text-secondary); margin-left: 5px;">End Time (24h)</label>
-              <input type="text" id="edit-task-end-time" required placeholder="Select Time" />
+            <div
+              style="flex: 1; display: flex; flex-direction: column; gap: 6px"
+            >
+              <label
+                for="edit-task-end-time"
+                style="
+                  font-size: 13px;
+                  color: var(--text-secondary);
+                  margin-left: 5px;
+                "
+                >End Time (24h)</label
+              >
+              <input
+                type="text"
+                id="edit-task-end-time"
+                required
+                placeholder="Select Time"
+              />
             </div>
           </div>
 
-          <div style="display: flex; align-items: center; gap: 10px; padding: 0 5px;">
-            <input type="checkbox" id="edit-task-daily" style="width: auto; height: 18px; width: 18px; accent-color: var(--accent-primary); cursor: pointer;" />
-            <label for="edit-task-daily" style="color: var(--text-primary); cursor: pointer; user-select: none; font-size: 14px;">Daily Task</label>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 10px;
+              padding: 0 5px;
+            "
+          >
+            <input
+              type="checkbox"
+              id="edit-task-daily"
+              style="
+                width: auto;
+                height: 18px;
+                width: 18px;
+                accent-color: var(--accent-primary);
+                cursor: pointer;
+              "
+            />
+            <label
+              for="edit-task-daily"
+              style="
+                color: var(--text-primary);
+                cursor: pointer;
+                user-select: none;
+                font-size: 14px;
+              "
+              >Daily Task</label
+            >
           </div>
 
           <input type="date" id="edit-task-date" required />
@@ -174,5 +329,6 @@
 
     <!-- Dashboard Page JS -->
     <script src="../javascript/dashboard.js"></script>
+    <script src="/assets/javascript/pwa-register.js"></script>
   </body>
 </html>
